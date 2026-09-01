@@ -12,6 +12,7 @@ from __future__ import annotations
 import os
 from collections.abc import Iterator
 from datetime import UTC, datetime, timedelta
+from pathlib import Path
 
 import fakeredis
 import pytest
@@ -23,7 +24,7 @@ from sqlalchemy.pool import StaticPool
 # Environment must be set before app.config is imported: settings are cached
 # the first time they are read.
 os.environ["APP_ENV"] = "test"
-os.environ["SCHEDULE_BASE_URL"] = "https://schedule.test/courses"
+os.environ["SCHEDULE_BASE_URL"] = "https://schedule.test/ClassSchedule"
 os.environ["TELEGRAM_BOT_TOKEN"] = "test-bot-token"
 os.environ["SMTP_HOST"] = "smtp.test"
 
@@ -79,8 +80,8 @@ def limiter(redis: fakeredis.FakeStrictRedis) -> SlidingWindowRateLimiter:
 
 # --- Domain helpers --------------------------------------------------------
 
-TERM = "202610"
-CRN = "10432"
+TERM = "20273"  # MNSU yrtr code for Fall 2026
+CRN = "005217"  # MNSU calls this the Course ID
 
 
 def make_section(
@@ -132,27 +133,61 @@ def make_watch(
     return watch
 
 
+FIXTURES = Path(__file__).parent / "fixtures"
+
+
+def fixture_html(name: str) -> str:
+    """A page saved from secure2.mnsu.edu, verbatim apart from stripped assets."""
+    return (FIXTURES / name).read_text(encoding="utf-8")
+
+
 def schedule_html(
     *,
     crn: str = CRN,
     seats_open: int = 0,
     seats_total: int = 30,
     status_label: str = "Closed",
-    course: str = "CS 320",
+    course: str = "CIS 320",
     title: str = "Software Engineering",
+    instructor: str = "Rivera, A",
 ) -> str:
-    """One-row schedule page in the markup the parser targets."""
+    """
+    A one-row results page in MNSU's real markup, with the numbers under test
+    control.
+
+    Note the status span carries `class="CloseSession"` regardless of the
+    label: on the real site those class names are inverted, and hard-coding one
+    of them here keeps the fake honest -- any test that accidentally started
+    depending on the class would break against the real fixtures.
+    """
+    enrolled = max(seats_total - seats_open, 0)
     return f"""
     <html><body>
-      <table class="section-list">
-        <tr data-crn="{crn}">
-          <td class="course">{course}</td>
-          <td class="title">{title}</td>
-          <td class="instructor">A. Rivera</td>
-          <td class="seats-open">{seats_open}</td>
-          <td class="seats-total">{seats_total}</td>
-          <td class="status">{status_label}</td>
-        </tr>
+      <h5>{course}  - {title}                     (4        Credits)</h5>
+      <table class="table table-striped table-sm table-bordered">
+        <thead><tr>
+          <th scope="col">Course ID</th><th scope="col">Sect</th>
+          <th scope="col">Delivery Method</th><th scope="col">Grade<br/>Meth</th>
+          <th scope="col">Days</th><th scope="col">Time</th>
+          <th scope="col">Dates</th><th scope="col">Bldg/Room</th>
+          <th scope="col">Instructor</th><th scope="col">Size</th>
+          <th scope="col">Enrl</th><th scope="col">Status</th>
+          <th scope="col">AddlInfo</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>{crn}</td><td>01</td><td>Completely Online-Asynchronous</td>
+            <td>OPT</td><td></td><td></td><td>08/24/26 - 12/11/26</td>
+            <td>ON LINE</td><td>{instructor}</td>
+            <td>{seats_total}</td><td>{enrolled}</td>
+            <td><span class="CloseSession">{status_label}</span></td><td></td>
+          </tr>
+          <tr>
+            <td aria-describedby="notes-{crn}" colspan="13">
+              Notes for the previous row course id: {crn}
+            </td>
+          </tr>
+        </tbody>
       </table>
     </body></html>
     """
