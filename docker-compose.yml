@@ -1,0 +1,66 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: seatalerts
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d seatalerts"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    environment: &env
+      APP_ENV: development
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/seatalerts
+      REDIS_URL: redis://redis:6379/0
+      SCHEDULE_BASE_URL: ${SCHEDULE_BASE_URL:-https://example.edu/course-schedule}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      SMTP_HOST: ${SMTP_HOST:-}
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "alembic upgrade head &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+  worker:
+    build: .
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    environment: *env
+    # Concurrency 4 is well above what the scrape rate limit allows on purpose:
+    # the extra slots absorb slow requests so one hung fetch does not stall the
+    # sections behind it. The limiter, not the worker count, caps real traffic.
+    command: celery -A app.tasks.celery_app.celery_app worker --loglevel=info --concurrency=4
+
+  beat:
+    build: .
+    depends_on:
+      redis: {condition: service_healthy}
+    environment: *env
+    # Exactly one beat process, ever. Two would double every scheduled poll.
+    command: celery -A app.tasks.celery_app.celery_app beat --loglevel=info
+
+volumes:
+  pgdata:
