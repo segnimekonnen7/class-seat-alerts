@@ -1,0 +1,147 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    name: Lint, type-check, test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Ruff
+        run: ruff check .
+
+      - name: Ruff format check
+        run: ruff format --check .
+
+      - name: mypy
+        run: mypy app
+
+      - name: Pytest
+        env:
+          APP_ENV: test
+        run: pytest -v
+
+  migrations:
+    name: Alembic migrations
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: seatalerts
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      APP_ENV: test
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/seatalerts
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Apply migrations
+        run: alembic upgrade head
+
+      # Fails if the models changed and nobody wrote the migration. Without it
+      # a new column passes CI on the SQLite-backed tests and then 500s in
+      # production on the first query against a column Postgres never got.
+      - name: Fail if models have drifted from migrations
+        run: alembic check
+
+      - name: Migrations reverse cleanly
+        run: alembic downgrade base
+
+  celery:
+    name: Celery app loads
+    runs-on: ubuntu-latest
+
+    services:
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      APP_ENV: test
+      REDIS_URL: redis://localhost:6379/0
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # A typo in a task name or a bad beat schedule only shows up when Celery
+      # actually loads the app. Catching it here beats catching it when a
+      # section opens and nothing fires.
+      - name: Inspect registered tasks
+        run: celery -A app.tasks.celery_app.celery_app inspect registered --timeout 10 || true
+
+      - name: Verify tasks and beat schedule are wired up
+        run: |
+          python - <<'PY'
+          from app.tasks.celery_app import celery_app
+          import app.tasks.poll  # noqa: F401  registers the tasks
+
+          expected = {
+              "app.tasks.poll.dispatch_due_sections",
+              "app.tasks.poll.poll_section",
+              "app.tasks.poll.send_notification",
+              "app.tasks.poll.retry_pending_notifications",
+          }
+          registered = set(celery_app.tasks)
+          missing = expected - registered
+          assert not missing, f"tasks not registered: {missing}"
+
+          for name, entry in celery_app.conf.beat_schedule.items():
+              assert entry["task"] in registered, f"beat entry {name} points at a missing task"
+
+          print(f"OK: {len(expected)} tasks registered, "
+                f"{len(celery_app.conf.beat_schedule)} beat entries valid")
+          PY
