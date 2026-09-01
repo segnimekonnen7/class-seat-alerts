@@ -42,7 +42,15 @@ def patched_tasks(monkeypatch, db, redis):
 
     state = {"html": schedule_html(seats_open=0, status_label="Closed"), "status": 200}
 
+    # The schedule is a form POST: a GET serves the search form (carrying the
+    # anti-forgery token) and the POST returns the results.
+    form_page = (
+        "<html><form>" '<input name="__RequestVerificationToken" value="tok"/>' "</form></html>"
+    )
+
     def handler(request: httpx.Request) -> httpx.Response:
+        if request.method == "GET":
+            return httpx.Response(200, text=form_page, request=request)
         return httpx.Response(state["status"], text=state["html"], request=request)
 
     from app.rate_limit import SlidingWindowRateLimiter
@@ -153,7 +161,7 @@ def test_a_missing_crn_is_recorded_not_retried(db, patched_tasks):
     section = make_section(db, status=SectionStatus.closed)
     make_watch(db, section)
 
-    state["html"] = schedule_html(crn="99999")
+    state["html"] = schedule_html(crn="999999")
     assert poll_tasks.poll_section(section.id) == "unparseable"
     assert section.consecutive_failures == 1
 

@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     redis_url: str = Field(default="redis://localhost:6379/0", alias="REDIS_URL")
 
     schedule_base_url: str = Field(
-        default="https://example.edu/course-schedule", alias="SCHEDULE_BASE_URL"
+        default="https://secure2.mnsu.edu/ClassSchedule", alias="SCHEDULE_BASE_URL"
     )
     schedule_user_agent: str = Field(
         default="class-seat-alerts/1.0 (student project)", alias="SCHEDULE_USER_AGENT"
@@ -113,7 +113,7 @@ class Settings(BaseSettings):
         if not self.api_key:
             raise ValueError("API_KEY must be set in production to protect write endpoints.")
 
-        if self.schedule_base_url.startswith("https://example.edu"):
+        if "example.edu" in self.schedule_base_url:
             raise ValueError("SCHEDULE_BASE_URL still points at the example placeholder.")
 
 

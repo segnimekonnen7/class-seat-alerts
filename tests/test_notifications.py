@@ -46,12 +46,12 @@ def test_the_alert_leads_with_the_crn():
     message = build_opening_message(
         course_code="CS 320",
         title="Software Engineering",
-        crn="10432",
-        term="202610",
+        crn="005217",
+        term="20273",
         seats_open=3,
         seats_total=30,
     )
-    assert "10432" in message.body
+    assert "005217" in message.body
     assert "CS 320" in message.subject
 
 
@@ -59,8 +59,8 @@ def test_the_alert_reports_the_seat_count():
     message = build_opening_message(
         course_code="CS 320",
         title="Software Engineering",
-        crn="10432",
-        term="202610",
+        crn="005217",
+        term="20273",
         seats_open=3,
         seats_total=30,
     )
@@ -71,8 +71,8 @@ def test_the_alert_handles_an_unknown_total():
     message = build_opening_message(
         course_code="CS 320",
         title="SE",
-        crn="10432",
-        term="202610",
+        crn="005217",
+        term="20273",
         seats_open=2,
         seats_total=0,
     )
