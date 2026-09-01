@@ -1,0 +1,36 @@
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "C4", "SIM", "BLE"]
+ignore = [
+    # FastAPI's dependency mechanism is function calls in argument defaults,
+    # so B008 fires on every route.
+    "B008",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"alembic/versions/*" = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+warn_redundant_casts = true
+no_implicit_optional = true
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = ["celery.*", "fakeredis.*", "bs4.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# Tests lean on fixtures and dynamic JSON; type-checking them adds noise
+# without catching the class of bug mypy is here for.
+module = ["tests.*", "alembic.*"]
+ignore_errors = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
