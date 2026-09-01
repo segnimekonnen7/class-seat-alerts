@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>MSU Class Schedule</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"/>
+<link href="/ClassSchedule/Content/images/favicon.png" rel="icon" type="image/x-icon"/>
+<script src="https://use.typekit.net/uow6mcx.js"></script>
+<script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+<link href="/ClassSchedule/Content/css?v=zbkFKvNMYDfW0Kg2D67s5_qk48b1zqVaV2SZDI5IHo81" rel="stylesheet">
+<link href="/ClassSchedule/styles/css?v=l2fBxDhI0Bahom4Ty8otk_ynt7DEfOSIECWJDuav8YM1" rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+<style>
+
+        .container-fluid {
+
+            max-width: none;
+
+        }
+
+    </style>
+</link></link></head>
+<body class="header-fixed">
+<img alt="Minnesota State University Mankato logo" class="print-logo" onerror="this.onerror=null; this.src='images/mnsu-logo.png'" src="/ClassSchedule/Content/images/mnsu-logo.svg"/>
+<div class="l-surround">
+<!-- Layout header -->
+<header class="l-header header" id="header">
+<div class="l-header__elements">
+<!-- Main logo -->
+<a class="l-logo" href="https://mankato.mnsu.edu/"><img alt="Minnesota State University Mankato" class="main-logo" src="/ClassSchedule/Content/images/mnsu-logo.png"/></a>
+<a class="l-mobile-logo" href="https://mankato.mnsu.edu/"><img alt="Minnesota State University Mankato" class="main-logo" src="/ClassSchedule/Content/images/mnsu-logo-sm.png"/></a>
+<!-- END Main logo -->
+</div>
+</header>
+<!-- END Layout header -->
+<!-- Layout canvas -->
+<div class="l-canvas">
+<!-- Content Container -->
+<div class="container-fluid">
+<script src="/ClassSchedule/bundles/jquery?v=235DeCRyc2KKtm5-u-WowaGmWHU3ft44y448NxHpMf41"></script>
+<h1 id="heading">Search Courses</h1>
+<form action="/ClassSchedule/" id="submitForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="9mwus6ifUFlmS9dn12lMeYHfkax_BdEBY69f0j1n7TwMZb0G7LFHMwHN6FfTqr8ekhBy-_t_hmuGBX5vojv1CDB2IP1GwaA5krbuWEajL-s1"/><script src="/ClassSchedule/bundles/jquery?v=235DeCRyc2KKtm5-u-WowaGmWHU3ft44y448NxHpMf41"></script>
+<div class="row">
+<div class="col-sm-12 col-md-3 col-lg-2">
+<div class="rightAllign">
+<label for="ddlyearTerm">     Semester:</label>
+</div>
+</div>
+<div class="col-sm-12 col-md-3 col-lg-2">
+<select class="form-control input-sm" id="ddlyearTerm" name="yrtr"><option value="20273">Fall 2026                               </option>
+</select>
+</div>
+<div class="col-sm-12 col-md-2 col-lg-2">
+</div>
+<div class="col-sm-12 col-md-2 col-lg-2">
+<a class="btn btn-primary btn-sm" href="/ClassSchedule/Archive">View past terms</a>
+</div>
+<div class="col-sm-12 col-md-2 col-lg-3">
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12 col-md-2 col-lg-2">
+</div>
+<div class="col-sm-12 col-md-5 col-lg-3">
+<div class="leftAllign">
+
+            Search Options
+
+        </div>
+</div>
+<div class="col-sm-12 col-md-7 col-lg-6">
+<div class="leftAllign">
+<i>If you know the CourseID #,College or Course Number, you do not need any other selection</i>
+</div>
+<span class="searchCourse"> </span>
+</div>
+</div>
+<div class="row">
+<div>
+<div class="col-sm-12 col-md-3 col-lg-2">
+<div class="rightAllign">
+<label for="ddlDepartment"> Department</label>
+</div>
+</div>
+<div class="col-sm-12 col-md-4 col-lg-3">
+<select class="form-control input-sm" id="ddlDepartment" name="subj"><option value="">--- Select ---</option>
+<option value="ACCT">Accounting (ACCT)</option>
+<option value="ADT ">Advanced Dental Therapy (ADT )</option>
+<option value="AGBZ">AgriBusiness &amp; Food Innovation (AGBZ)</option>
+<option value="AIS ">American Indigenous Studies (AIS )</option>
+<option value="ANTH">Anthropology (ANTH)</option>
+<option value="AOS ">Applied Organizational Studies (AOS )</option>
+<option value="ART ">Art (ART )</option>
+<option value="AST ">Astronomy (AST )</option>
+<option value="AT  ">Athletic Training (AT  )</option>
+<option value="AE  ">Automotive Engineering (AE  )</option>
+<option value="AET ">Automotive Engineering Technology (AET )</option>
+<option value="AVIA">Aviation (AVIA)</option>
+<option value="BIOL">Biology (BIOL)</option>
+<option value="BUS ">Business (BUS )</option>
+<option value="BLAW">Business Law (BLAW)</option>
+<option value="CAHN">CAHN Interdisciplinary (CAHN)</option>
+<option value="CHEM">Chemistry (CHEM)</option>
+<option value="CHIN">Chinese (CHIN)</option>
+<option value="CIVE">Civil Engineering (CIVE)</option>
+<option value="COMM">Communication (COMM)</option>
+<option value="CDIS">Communication Sciences and Disorders (CDIS)</option>
+<option value="CIS ">Computer Information Science (CIS )</option>
+<option value="CS  ">Computer Science (CS  )</option>
+<option value="CM  ">Construction Management (CM  )</option>
+<option value="CSP ">Counseling and Student Personnel (CSP )</option>
+<option value="CW  ">Creative Writing (CW  )</option>
+<option value="CJ  ">Criminal Justice (CJ  )</option>
+<option value="DAK ">Dakota Language (DAK )</option>
+<option value="DANC">Dance (DANC)</option>
+<option value="DHYG">Dental Hygiene (DHYG)</option>
+<option value="ECON">Economics (ECON)</option>
+<option value="ED  ">Education (ED  )</option>
+<option value="EDLD">Educational Leadership (EDLD)</option>
+<option value="KSP ">Eductnl Studies: K-12 &amp; Secondary Pgrms (KSP )</option>
+<option value="EE  ">Electrical Engineering (EE  )</option>
+<option value="EET ">Electronic Engineering Technology (EET )</option>
+<option value="ELE ">Elementary and Literacy Education (ELE )</option>
+<option value="ENG ">English (ENG )</option>
+<option value="ENVR">Environmental Sciences (ENVR)</option>
+<option value="ETHN">Ethnic Studies (ETHN)</option>
+<option value="FCS ">Family Consumer Science (FCS )</option>
+<option value="FILM">Film (FILM)</option>
+<option value="FINA">Finance (FINA)</option>
+<option value="FYEX">First Year Experience (FYEX)</option>
+<option value="FREN">French (FREN)</option>
+<option value="GWS ">Gender and Women's Studies (GWS )</option>
+<option value="GEOG">Geography (GEOG)</option>
+<option value="GEOL">Geology (GEOL)</option>
+<option value="GER ">German (GER )</option>
+<option value="GERO">Gerontology (GERO)</option>
+<option value="HLTH">Health Science (HLTH)</option>
+<option value="HIST">History (HIST)</option>
+<option value="HONR">Honors (HONR)</option>
+<option value="HP  ">Human Performance (HP  )</option>
+<option value="HUM ">Humanities (HUM )</option>
+<option value="ENGR">Integrated Engineering (ENGR)</option>
+<option value="ISAT">Integrated Science and Technology (ISAT)</option>
+<option value="IEP ">Intensive English Program (IEP )</option>
+<option value="IDST">Interdisciplinary Studies (IDST)</option>
+<option value="IBUS">International Business (IBUS)</option>
+<option value="IPO ">International Programs (IPO )</option>
+<option value="MGMT">Management (MGMT)</option>
+<option value="MFE ">Manufacturing Engineering (MFE )</option>
+<option value="MET ">Manufacturing Engineering Technology (MET )</option>
+<option value="MRKT">Marketing (MRKT)</option>
+<option value="MACC">Master in Accounting (MACC)</option>
+<option value="MBA ">Master of Business Administration (MBA )</option>
+<option value="MATH">Mathematics (MATH)</option>
+<option value="ME  ">Mechanical Engineering (ME  )</option>
+<option value="MEDT">Medical Technology (MEDT)</option>
+<option value="MSL ">Military Science and Leadership (MSL )</option>
+<option value="MUSE">Museum Studies (MUSE)</option>
+<option value="MUSC">Music General (MUSC)</option>
+<option value="MUSP">Music Performance (MUSP)</option>
+<option value="NPL ">Nonprofit Leadership (NPL )</option>
+<option value="NURS">Nursing (NURS)</option>
+<option value="PHIL">Philosophy (PHIL)</option>
+<option value="PHYS">Physics (PHYS)</option>
+<option value="POL ">Political Science (POL )</option>
+<option value="PSYC">Psychology (PSYC)</option>
+<option value="RPLS">Recreation, Parks, and Leader Services (RPLS)</option>
+<option value="REHB">Rehabilitation Counseling (REHB)</option>
+<option value="SCAN">Scandinavian Studies (SCAN)</option>
+<option value="SOST">Social Studies (SOST)</option>
+<option value="SOWK">Social Work (SOWK)</option>
+<option value="SOC ">Sociology (SOC )</option>
+<option value="SE  ">Software Engineering (SE  )</option>
+<option value="SPAN">Spanish (SPAN)</option>
+<option value="SPED">Special Education (SPED)</option>
+<option value="STAT">Statistics (STAT)</option>
+<option value="TEST">Test subject (TEST)</option>
+<option value="THEA">Theatre Arts (THEA)</option>
+<option value="URBS">Urban and Regional Studies (URBS)</option>
+<option value="WELL">Wellness (WELL)</option>
+<option value="WLC ">World Languages and Cultures (WLC )</option>
+</select>
+</div>
+</div>
+<div>
+<div class="col-sm-12 col-md-2 col-lg-2">
+<div class="rightAllign">
+<label for="ddlCollege"> <span class="orFont">OR</span> College:</label>
+</div>
+</div>
+<div class="col-sm-12 col-md-3 col-lg-3">
+<select class="form-control input-sm" id="ddlCollege" name="division_code"><option value="">--- Select ---</option>
+<option value="0004">Allied Health &amp; Nursing</option>
+<option value="0001">Arts &amp; Humanities</option>
+<option value="0002">Business</option>
+<option value="0017">College of Humanities &amp; Social Sciences</option>
+<option value="0003">Education</option>
+<option value="0005">Nursing</option>
+<option value="0006">Science, Engineering, &amp; Technology</option>
+<option value="0007">Social &amp; Behavioral Sciences</option>
+</select>
+</div>
+</div>
+</div>
+<div class="row">
+<div>
+<div class="col-sm-12 col-md-3 col-lg-2">
+<div class="rightAllign">
+<label for="ddlCampus">      Campus:</label>
+</div>
+</div>
+<div class="col-sm-12 col-md-4 col-lg-3">
+<select class="form-control input-sm" id="ddlCampus" name="campusId"><option value="1      ">On &amp; Off Campus</option>
+<option value="2      ">On Campus Only</option>
+<option value="3      ">Off Campus Only-All</option>
+<option value="4      ">Continuing Education</option>
+<option value="5      ">Off Campus Only-7700 France, Edina</option>
+<option value="55102  ">Off Campus Only-Saint Paul College                      </option>
+<option value="55106  ">Off Campus Only-St. Paul                                </option>
+<option value="55125  ">Off Campus Only-Woodbury, MN                            </option>
+<option value="55337  ">Off Campus Only-Burnsville                              </option>
+<option value="55350  ">Off Campus Only-Hutchinson                              </option>
+<option value="55379  ">Off Campus Only-Shakopee                                </option>
+<option value="55387  ">Off Campus Only-Waconia                                 </option>
+<option value="55407  ">Off Campus Only-Minneapolis                             </option>
+<option value="55415  ">Off Campus Only-Minneapolis, MN                         </option>
+<option value="55420  ">Off Campus Only-Bloomington                             </option>
+<option value="55426  ">Off Campus Only-St Louis Park                           </option>
+<option value="55431  ">Off Campus Only-Normandale Community College, Bloomingto</option>
+<option value="55792  ">Off Campus Only-Virginia                                </option>
+<option value="55901  ">Off Campus Only-Rochester                               </option>
+<option value="56001  ">Off Campus Only-Mankato                                 </option>
+<option value="56007  ">Off Campus Only-Albert Lea                              </option>
+<option value="56031  ">Off Campus Only-Fairmont                                </option>
+<option value="56073  ">Off Campus Only-New Ulm                                 </option>
+<option value="56081  ">Off Campus Only-St. James                               </option>
+<option value="56082  ">Off Campus Only-St. Peter                               </option>
+<option value="56093  ">Off Campus Only-Waseca                                  </option>
+<option value="6      ">Friday and Saturday courses</option>
+<option value="II     ">Online and ITV courses</option>
+<option value="INTL   ">Off Campus Only-International Travel                    </option>
+<option value="OO     ">Online Only</option>
+<option value="USA    ">Off Campus Only-U. S. Travel                            </option>
+</select>
+</div>
+</div>
+<div>
+<div class="col-sm-12 col-md-2 col-lg-2">
+<div class="rightAllign">
+<label for="courseId"> <span class="orFont">OR </span> CourseID:</label>
+</div>
+</div>
+<div class="col-sm-12 col-md-3 col-lg-2">
+<input class="form-control input-sm text-box single-line" id="courseId" name="courseId" type="text" value=""/>
+</div>
+</div>
+</div>
+<div class="row">
+<div>
+<div class="col-sm-12 col-md-3 col-lg-2">
+<div class="rightAllign">
+<label for="ddlClassLevel">    Course Level:</label>
+</div>
+</div>
+<div class="col-sm-12 col-md-4 col-lg-3">
+<select class="form-control input-sm" id="ddlClassLevel" name="classLevelId"><option value="">--- Select ---</option>
+<option value="4">1-99 Level</option>
+<option value="1">100-200 Level</option>
+<option value="2">300-400 Level</option>
+<option value="3">Graduate Level/Doctoral</option>
+</select>
+</div>
+</div>
+<div>
+<div class="col-sm-12 col-md-2 col-lg-2">
+<div class="rightAllign">
+<label for="courseNumber"> <span class="orFont">OR </span> Course #:</label>
+</div>
+</div>
+<div class="col-sm-12 col-md-3 col-lg-2">
+<input class="form-control input-sm text-box single-line" id="courseNumber" name="courseNumber" type="text" value=""/>
+</div>
+</div>
+</div>
+<div class="row">
+<div>
+<div class="col-sm-12 col-md-3 col-lg-2">
+<div class="rightAllign">
+<label for="ddlstartTimeId">  Start Time:</label>
+</div>
+</div>
+<div class="col-sm-12 col-md-4 col-lg-3">
+<select class="form-control input-sm" id="ddlstartTimeId" name="startTimeId"><option value="ARR">ARR</option>
+<option selected="selected" value="0000">12:00 A.M.</option>
+<option value="0100">1:00 A.M.</option>
+<option value="0200">2:00 A.M.</option>
+<option value="0300">3:00 A.M.</option>
+<option value="0400">4:00 A.M.</option>
+<option value="0500">5:00 A.M.</option>
+<option value="0600">6:00 A.M.</option>
+<option value="0700">7:00 A.M.</option>
+<option value="0800">8:00 A.M.</option>
+<option value="0900">9:00 A.M.</option>
+<option value="1000">10:00 A.M.</option>
+<option value="1100">11:00 A.M.</option>
+<option value="1200">12:00 P.M.</option>
+<option value="1300">1:00 P.M.</option>
+<option value="1400">2:00 P.M.</option>
+<option value="1500">3:00 P.M.</option>
+<option value="1600">4:00 P.M.</option>
+<option value="1700">5:00 P.M.</option>
+<option value="1800">6:00 P.M.</option>
+<option value="1900">7:00 P.M.</option>
+<option value="2000">8:00 P.M.</option>
+<option value="2100">9:00 P.M.</option>
+<option value="2200">10:00 P.M.</option>
+<option value="2300">11:00 P.M.</option>
+</select>
+</div>
+</div>
+<div>
+<div class="col-sm-12 col-md-5 col-lg-6">
+</div>
+</div>
+</div>
+<div class="row">
+<div>
+<div class="col-sm-12 col-md-3 col-lg-2">
+<div class="rightAllign">
+<label for="ddlendTimeId"> To End Time:</label>
+</div>
+</div>
+<div class="col-sm-12 col-md-4 col-lg-3">
+<select class="form-control input-sm" id="ddlendTimeId" name="endTimeId"><option value="ARR">ARR</option>
+<option value="0000">12:00 A.M.</option>
+<option value="0100">1:00 A.M.</option>
+<option value="0200">2:00 A.M.</option>
+<option value="0300">3:00 A.M.</option>
+<option value="0400">4:00 A.M.</option>
+<option value="0500">5:00 A.M.</option>
+<option value="0600">6:00 A.M.</option>
+<option value="0700">7:00 A.M.</option>
+<option value="0800">8:00 A.M.</option>
+<option value="0900">9:00 A.M.</option>
+<option value="1000">10:00 A.M.</option>
+<option value="1100">11:00 A.M.</option>
+<option value="1200">12:00 P.M.</option>
+<option value="1300">1:00 P.M.</option>
+<option value="1400">2:00 P.M.</option>
+<option value="1500">3:00 P.M.</option>
+<option value="1600">4:00 P.M.</option>
+<option value="1700">5:00 P.M.</option>
+<option value="1800">6:00 P.M.</option>
+<option value="1900">7:00 P.M.</option>
+<option value="2000">8:00 P.M.</option>
+<option value="2100">9:00 P.M.</option>
+<option value="2200">10:00 P.M.</option>
+<option value="2300">11:00 P.M.</option>
+<option selected="selected" value="2359">11:59 P.M.</option>
+</select>
+</div>
+</div>
+<div>
+<div class="col-sm-12 col-md-5 col-lg-6">
+</div>
+</div>
+</div>
+<div class="row">
+<div>
+<div class="col-sm-12 col-md-3 col-lg-2">
+<div class="rightAllign">
+<label for="ddlDays">Days:</label>
+</div>
+</div>
+<div class="col-sm-12 col-md-4 col-lg-3">
+<select class="form-control input-sm" id="ddlDays" name="days"><option value="All">All</option>
+<option value="MTWHF  ">MTWHF</option>
+<option value="MTWH   ">MTWH</option>
+<option value="MTW F  ">MTW F</option>
+<option value="MTW    ">MTW</option>
+<option value="MT HF  ">MT HF</option>
+<option value="MT H   ">MT H</option>
+<option value="M WHF  ">M WHF</option>
+<option value="M WH   ">M WH</option>
+<option value="M W F  ">M W F</option>
+<option value="M W    ">M W</option>
+<option value="M  H   ">M  H</option>
+<option value="M   F  ">M   F</option>
+<option value="M      ">M</option>
+<option value=" TWHF  ">TWHF</option>
+<option value=" TWH   ">TWH</option>
+<option value=" TW    ">TW</option>
+<option value=" T HF  ">T HF</option>
+<option value=" T H  N">T H  N</option>
+<option value=" T H   ">T H</option>
+<option value=" T  F  ">T  F</option>
+<option value=" T     ">T</option>
+<option value="  WHF  ">WHF</option>
+<option value="  W F  ">W F</option>
+<option value="  W    ">W</option>
+<option value="   H   ">H</option>
+<option value="    F  ">F</option>
+<option value="     S ">S</option>
+<option value="      N">N</option>
+</select>
+</div>
+</div>
+<div>
+<div class="col-sm-12 col-md-5 col-lg-6">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12 col-md-5 col-lg-4">
+</div>
+<div class="col-sm-12 col-md-8 col-lg-8">
+<input class="btn btn-default btn-sm" name="Command" type="submit" value="Open Sections Only"/>   
+
+        <input class="btn btn-default btn-sm" name="Command" type="submit" value="All Sections"/>   
+
+        <input class="btn btn-default btn-sm" name="Command" type="submit" value="Reset"/>
+</div>
+</div>
+<br/>
+<script type="text/javascript">
+
+    ddlDepartment
+
+    ddlyearTerm
+
+    $(function () {
+
+        $("#ddlyearTerm").change(function () {
+
+            var selectedItem = $(this).val();
+
+            var ddlDept = $("#ddlDepartment");
+
+            var statesProgress = $("#Department-loading-progress");
+
+            statesProgress.show();
+
+            $.ajax({
+
+                cache: false,
+
+                type: "GET",
+
+                url: "/ClassSchedule/Home/GetDepartment",
+
+                data: { "yrtr": selectedItem },
+
+                success: function (data) {
+
+                    ddlDept.html('');
+
+                    ddlDept.append('<option value="" >--- Select ---</option>');
+
+                    $.each(data, function (id, option) {
+
+                        ddlDept.append($('<option></option>').val(option.id).html(option.name));
+
+                    });
+
+                    statesProgress.hide();
+
+                },
+
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                    alert('Failed to retrieve model.');
+
+                    statesProgress.hide();
+
+                }
+
+            });
+
+        });
+
+    });
+
+
+
+
+
+</script>
+<br/>
+</form><script type="text/javascript">
+
+    $("#ddlDepartment").change(function () {
+
+        if (this.value) {
+
+            $("#ddlCollege").val('');
+
+        }
+
+    });
+
+
+
+
+
+    $("#ddlCollege").change(function () {
+
+        if (this.value) {
+
+            $("#ddlDepartment").val('');
+
+        }
+
+    });
+
+    var summer = '<option selected="selected" value="">--- Select ---</option><option value="0004">Allied Health & Nursing</option><option value="0001">Arts & Humanities</option><option value="0002">Business</option><option value="0005">Nursing</option><option value="0003">Education</option><option value="0006">Science, Engineering, & Technology</option><option value="0002">Social & Behavioral Sciences</option>';
+
+    var fall = '<option selected="selected" value="">--- Select ---</option><option value="0004">Allied Health & Nursing</option><option value="0002">Business</option><option value="0003">Education</option><option value="0017">Humanities and Social Sciences</option><option value="0005">Nursing</option><option value="0006">Science, Engineering, & Technology</option>';
+
+
+
+    $(document).ready(function () {
+
+        $("#ddlCollege").html(fall);
+
+        $("#ddlyearTerm").on('change', function () {
+
+            if ($(this).val() === "20233") {
+
+                $("#ddlCollege").html(fall);
+
+            } else if ($(this).val() === "20231") {
+
+                $("#ddlCollege").html(summer);
+
+            }
+
+        });
+
+    });
+
+
+
+</script>
+</div>
+<!-- Footer -->
+<footer class="sub-footer">
+<div class="row">
+<div class="col-sm-12">
+<p>© 2005-2021 Minnesota State University Mankato | <a href="#">privacy</a> | <a href="#">terms</a></p>
+<p><a href="http://minnstate.edu/"><img alt="Minnesota State. Minnesota State University, Mankato, A member of Minnesota State" src="/ClassSchedule/Content/images/minnesota-state-member-logo.png"/></a></p>
+</div>
+</div>
+</footer>
+<!-- END Footer -->
+</div>
+<!-- END Layout canvas -->
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/ClassSchedule/bundles/jquery?v=235DeCRyc2KKtm5-u-WowaGmWHU3ft44y448NxHpMf41"></script>
+<script src="/ClassSchedule/bundles/bootstrap?v=lescQEuG5u4jd-GcVDBcbpUOSyTDIg0Kk9zHDX55GCw1"></script>
+<script src="/ClassSchedule/bundles/script?v="></script>
+</body>
+</html>
